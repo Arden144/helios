@@ -441,6 +441,10 @@ export class OpenSourceService {
           buttonOptions.cssClass = 'infuse';
           break;
 
+        case 'add-to-infuse':
+          buttonOptions.cssClass = 'infuse';
+          break;
+
         case 'cast':
           buttonOptions.cssClass = 'cast';
           break;
@@ -662,6 +666,15 @@ export class OpenSourceService {
     const url = `infuse://x-callback-url/play?url=${encodeURIComponent(videoUrl)}`;
     BrowserService.open(url, false);
   }
+
+  private async addToInfuse(videoUrl: string) {
+    if (!this.platform.is('ios')) {
+      return;
+    }
+    const url = `infuse://x-callback-url/save?url=${encodeURIComponent(videoUrl)}`;
+    BrowserService.open(url, false);
+  }
+
   private async openOutplayer(videoUrl: string) {
     if (!this.platform.is('ios')) {
       return;
@@ -1216,6 +1229,12 @@ export class OpenSourceService {
           playVideo = true;
           break;
 
+        case 'add-to-infuse':
+          this.addToInfuse(
+            preferTranscodedFiles && streamLink.transcodedUrl ? streamLink.transcodedUrl : streamLink.url
+          );
+          break;
+
         case 'cast':
           let videoUrl1 = streamLink.url;
           let videoUrl2 = streamLink.transcodedUrl;
@@ -1360,7 +1379,12 @@ export class OpenSourceService {
         return;
       }
 
-      if (action === 'add-to-pm' || action === 'add-to-rd' || action === 'add-to-playlist') {
+      if (
+        action === 'add-to-pm' ||
+        action === 'add-to-rd' ||
+        action === 'add-to-playlist' ||
+        action === 'add-to-infuse'
+      ) {
         return;
       }
 

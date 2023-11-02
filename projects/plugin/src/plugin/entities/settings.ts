@@ -14,6 +14,7 @@ export declare type PlayButtonAction =
   | 'add-to-rd'
   | 'add-to-ad'
   | 'add-to-playlist'
+  | 'add-to-infuse'
   | 'open-infuse'
   | 'cast'
   | 'let-me-choose'
@@ -32,6 +33,7 @@ export const PlayButtonActionIos: PlayButtonAction[] = [
   'add-to-rd',
   'add-to-ad',
   'add-to-playlist',
+  'add-to-infuse',
   'open-infuse',
   'cast',
   'open-outplayer',
