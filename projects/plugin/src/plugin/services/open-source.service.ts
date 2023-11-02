@@ -1379,12 +1379,7 @@ export class OpenSourceService {
         return;
       }
 
-      if (
-        action === 'add-to-pm' ||
-        action === 'add-to-rd' ||
-        action === 'add-to-playlist' ||
-        action === 'add-to-infuse'
-      ) {
+      if (action === 'add-to-pm' || action === 'add-to-rd' || action === 'add-to-playlist') {
         return;
       }
 
@@ -1487,6 +1482,13 @@ export class OpenSourceService {
           buttonOptions.cssClass = 'infuse';
           buttonOptions.handler = () => {
             this.openInfuse(playlistVideo.url);
+          };
+          break;
+
+        case 'add-to-infuse':
+          buttonOptions.cssClass = 'infuse';
+          buttonOptions.handler = () => {
+            this.addToInfuse(playlistVideo.url);
           };
           break;
 
